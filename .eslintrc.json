@@ -1,0 +1,13 @@
+
+{
+    "extends": [
+        "airbnb"
+    ],
+    "settings": {
+        "polyfills": ["fetch"]
+      },
+    "env": {
+        "browser": true,
+        "jest": true      
+    }
+}

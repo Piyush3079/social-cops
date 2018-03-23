@@ -1,0 +1,56 @@
+{
+  "name": "social_cops_submission",
+  "version": "1.0.0",
+  "description": "a application for the submission of social cops internship task",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "yarn dev:start",
+    "dev:start": "nodemon --ignore lib --exec babel-node /",
+    "dev:wds": "webpack-dev-server --progress",
+    "prod:build": "rimraf lib && babel / -d lib --ignore .test.js",
+    "prod:start": "cross-env NODE_ENV=production nodemon start lib/",
+    "test": "yarn lint && jest --coverage",
+    "lint": "eslint index.js --ext .js,.jsx"
+  },
+  "keywords": [
+    "social-cops"
+  ],
+  "author": "Piyush Vijay",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.15.5",
+    "morgan": "~1.9.0",
+    "request": "^2.85.0",
+    "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-flow-react-proptypes": "^20.1.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-flowtype": "^2.45.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "fetch-mock": "^6.0.1",
+    "flow-bin": "^0.66.0",
+    "jest": "^22.4.0",
+    "mocha": "^5.0.4",
+    "nodemon": "^1.15.1",
+    "rimraf": "^2.6.2",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
