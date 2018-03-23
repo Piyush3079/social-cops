@@ -17,7 +17,7 @@ const downloadFile = (req, res) => {
           res.download(`./public/images/temp_compressed/${name}.${format}`);
         });
       });
-	});
-}
+ });
+};
 
 export default downloadFile;
