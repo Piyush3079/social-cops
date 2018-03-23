@@ -29,7 +29,14 @@
         <p><%= data.msg %></p>
     </div>
     <% } else {%>
-      <div>Hello</div>
+      <h4>Enter the url in the box to start download and image resizing.</h4>
+      <form action="/download_file" method="post">
+        <div class="form-group">
+          <label for="email">URL:</label>
+          <input type="text" class="form-control" id="email" name="uri">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
     <% } %>
   </body>
 </html>
