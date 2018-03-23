@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
+import getToken from '../controller/get-token';
+import showIndex from '../controller/show-index';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+export default (app) => {
+  app.get('/', showIndex);
 
-module.exports = router;
+  app.post('/get_token', getToken);
+};

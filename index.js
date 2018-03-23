@@ -5,8 +5,9 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import http from 'http';
+import routes from './routes/index';
+// import session from 'express-session';
 
-const index = require('./routes/index');
 
 const debug = require('debug')('social-cops:server');
 
@@ -72,7 +73,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+// app.use({
+//   session({
+//     key: process.env.COOKIE_NAME,
+//     secret: process.env.COOKIE_SECRET,
+//     store: sessionStore,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       path: '/',
+//       httpOnly: true,
+//       secure: false,
+//       maxAge: 7 * 24 * 60 * 60 * 1000
+//     },
+//   });
+// })
+
+routes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -92,4 +109,4 @@ app.use((err, req, res) => {
   res.render('error');
 });
 
-module.exports = app;
+export default app;
