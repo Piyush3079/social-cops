@@ -10,5 +10,8 @@ before_install:
 script:
   - npm run test
 
+afte_success:
+  - npm run cover
+
 cache:
   yarn: true

@@ -12,7 +12,8 @@
     "prod:start": "cross-env NODE_ENV=production nodemon start lib/",
     "test": "yarn lint && yarn mocha",
     "lint": "eslint *.js --ext .js,.jsx",
-    "mocha": "cross-env NODE_ENV=test nyc mocha test/*.test.js --exit"
+    "mocha": "cross-env NODE_ENV=test nyc mocha test/*.test.js --exit",
+    "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [
     "social-cops"
