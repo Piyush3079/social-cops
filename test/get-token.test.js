@@ -1,17 +1,21 @@
 import request from 'request';
 import chai from 'chai';
+import dotenv from 'dotenv';
 import app from '../app/index';
 import { verifyCredentials } from '../app/controller/get-token';
+
+dotenv.config();
 
 const { expect } = chai;
 
 // const agent = request.agent(app);
+const pass = process.env.PASSWORD;
 
 describe('get token', () => {
   it('should return token', (done) => {
-    expect(verifyCredentials('piyushvijay.1997@gmail.com', 'Piyush@1997').form)
+    expect(verifyCredentials('piyushvijay.1997@gmail.com', pass).form)
       .to.be.equal(false);
-    expect(verifyCredentials('piyushvijay.1997@gmail.com', 'Piyush@1997').token)
+    expect(verifyCredentials('piyushvijay.1997@gmail.com', pass).token)
       .to.be.a('string');
     done();
   });
@@ -36,7 +40,7 @@ describe('get token', () => {
     request
       .post({
         url: 'http://localhost:3000/get_token',
-        form: { username: 'piyushvijay.1997@gmail.com', password: 'Piyush@1997' },
+        form: { username: 'piyushvijay.1997@gmail.com', password: pass },
         responseType: 'buffer',
       }, (err, res) => {
         expect(res.statusCode).to.equal(200);
