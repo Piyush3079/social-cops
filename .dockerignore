@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+.env
+.nyc_input/
+coverage/
+coverage.lcov
+yarn-error.log
+/*.log
+*.lcov
