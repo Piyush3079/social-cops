@@ -1,13 +1,16 @@
 import express from 'express';
 import path from 'path';
-// import favicon from 'serve-favicon';
+import favicon from 'serve-favicon';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import http from 'http';
-import routes from './routes/index';
-// import session from 'express-session';
+import session from 'express-session';
+import dotenv from 'dotenv';
 
+import routes from './routes/index';
+
+dotenv.config();
 
 const debug = require('debug')('social-cops:server');
 
@@ -65,29 +68,38 @@ server.on('listening', onListening);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
-// app.use({
-//   session({
-//     key: process.env.COOKIE_NAME,
-//     secret: process.env.COOKIE_SECRET,
-//     store: sessionStore,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//       path: '/',
-//       httpOnly: true,
-//       secure: false,
-//       maxAge: 7 * 24 * 60 * 60 * 1000
-//     },
-//   });
-// })
+const MySQLStore = require('express-mysql-session')(session);
+
+const options = {
+  host: process.env.DB_HOST,
+  port: 3306,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+};
+
+const sessionStore = new MySQLStore(options);
+
+app.use(session({
+  key: process.env.COOKIE_NAME,
+  secret: process.env.COOKIE_SECRET,
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    path: '/',
+    httpOnly: true,
+    secure: false,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  },
+}));
 
 routes(app);
 

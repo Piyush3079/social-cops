@@ -4,16 +4,16 @@ import bcrypt from 'bcrypt';
 
 dotenv.config();
 
-const getToken = (req, res) => {
+export const verifyCredentials = (username, password) => {
+  let data;
   const uName = 'piyushvijay.1997@gmail.com';
   const uPass = process.env.PASSWORD;
   const secret = process.env.JWT_SECRET;
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(uPass, salt);
-  let data;
-  if (uName === req.body.username) {
-    if (bcrypt.compareSync(req.body.password, hash)) {
+  if (uName === username) {
+    if (bcrypt.compareSync(password, hash)) {
       const user = {
         username: uName,
         role: 'access',
@@ -32,8 +32,20 @@ const getToken = (req, res) => {
   } else {
     data = {
       form: true,
-      msg: 'Incorrect username or password entered',
+      msg: 'Incorrect username',
     };
+  }
+  return data;
+};
+
+const getToken = (req, res) => {
+  const { username, password } = req.body;
+  const data = verifyCredentials(username, password, req);
+  if (data.form === true) {
+    req.session.isLogin = false;
+  } else {
+    req.session.isLogin = true;
+    req.session.token = data.token;
   }
   res.render('index', { data });
 };

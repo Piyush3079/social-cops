@@ -6,12 +6,11 @@
   "private": true,
   "scripts": {
     "start": "yarn dev:start",
-    "dev:start": "nodemon --ignore lib --exec babel-node index.js",
-    "dev:wds": "webpack-dev-server --progress",
-    "prod:build": "rimraf lib && babel / -d lib --ignore .test.js",
+    "dev:start": "nodemon --ignore lib --exec babel-node app/",
+    "prod:build": "rimraf lib && babel app/ -d lib --ignore .test.js",
     "prod:start": "cross-env NODE_ENV=production nodemon start lib/",
     "test": "yarn lint && yarn mocha",
-    "lint": "eslint *.js --ext .js,.jsx",
+    "lint": "eslint app/ --ext .js,.jsx",
     "mocha": "cross-env NODE_ENV=test nyc mocha test/*.test.js --exit",
     "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
@@ -28,6 +27,7 @@
     "dotenv": "^5.0.1",
     "ejs": "~2.5.7",
     "express": "~4.15.5",
+    "express-mysql-session": "^1.2.3",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.2.0",
     "morgan": "~1.9.0",

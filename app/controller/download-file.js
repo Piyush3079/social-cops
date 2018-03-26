@@ -5,7 +5,7 @@ import sharp from 'sharp';
 const downloadFile = (req, res) => {
   const { uri } = req.body;
   const arr = uri.split('.');
-  const format = arr[arr.length-1];
+  const format = arr[(arr.length) - 1];
   const name = new Date().getTime();
   request(uri).pipe(fs.createWriteStream(`./public/images/temp/${name}.${format}`)).on('close', () => {
     sharp(`./public/images/temp/${name}.${format}`)
@@ -17,7 +17,7 @@ const downloadFile = (req, res) => {
           res.download(`./public/images/temp_compressed/${name}.${format}`);
         });
       });
- });
+  });
 };
 
 export default downloadFile;
