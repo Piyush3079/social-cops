@@ -3,17 +3,10 @@ language: node_js
 node_js:
   - "6"
 
+sudo: false
+
 env:
-  - USERNAME=piyushvijay.1997@gmail.com
-  - PASSWORD=random
-  - JWT_SECRET=my-jwt-secret
-  - SALT_ROUNDS=10
-  - COOKIE_NAME=random-cookie
-  - COOKIE_SECRET=random-secret
-  - DB_HOST=localhost
-  - DB_USER=travis
-  - DB_PASSWORD=
-  - DB_NAME=test
+  - PASSWORD=random JWT_SECRET=my-jwt-secret COOKIE_NAME=random-cookie COOKIE_SECRET=random-secret DB_HOST=localhost DB_USER=travis DB_PASSWORD= DB_NAME=test
 
 services:
   - mysql
@@ -21,7 +14,9 @@ services:
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
   - export PATH="$HOME/.yarn/bin:$PATH"
-  - mysql -e 'CREATE DATABASE IF NOT EXIST `test`;'
+
+before_script:
+  - mysql -e 'CREATE DATABASE `test`;'
 
 afte_success:
   - npm run cover
