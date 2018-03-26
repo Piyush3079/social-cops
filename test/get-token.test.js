@@ -35,9 +35,9 @@ describe('get token', () => {
   it('should resolve token request', (done) => {
     request
       .post({
-        headers: { 'content-type': 'application/x-www-form-urlencoded' },
         url: 'http://localhost:3000/get_token',
-        body: { username: 'piyushvijay.1997@gmail.com', password: 'Piyush@1997' },
+        form: { username: 'piyushvijay.1997@gmail.com', password: 'Piyush@1997' },
+        responseType: 'buffer',
       }, (err, res) => {
         expect(res.statusCode).to.equal(200);
         done();

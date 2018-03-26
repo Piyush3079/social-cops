@@ -7,3 +7,4 @@ node_modules/
 .nyc_output/
 *.lcov
 .coveralls.yml
+coverage.lcov

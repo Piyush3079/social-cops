@@ -12,7 +12,7 @@
     "test": "yarn lint && yarn mocha",
     "lint": "eslint app/ --ext .js,.jsx",
     "mocha": "cross-env NODE_ENV=test nyc mocha test/*.test.js --exit",
-    "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "cover": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "keywords": [
     "social-cops"
@@ -50,6 +50,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
+    "codecov": "^3.0.0",
     "coveralls": "^3.0.0",
     "cross-env": "^5.1.4",
     "eslint": "^4.18.1",
