@@ -15,14 +15,14 @@ env:
   - COOKIE_NAME=random-cookie
   - COOKIE_SECRET=random-secret
   - DB_HOST=localhost
-  - DB_USER=root
+  - DB_USER=travis
   - DB_PASSWORD=
   - DB_NAME=test
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
   - export PATH="$HOME/.yarn/bin:$PATH"
-  - mysql -e CREATE DATABASE IF NOT EXIST test
+  - mysql -e 'CREATE DATABASE IF NOT EXIST test;'
 
 afte_success:
   - npm run cover

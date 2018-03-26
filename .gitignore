@@ -8,3 +8,4 @@ node_modules/
 *.lcov
 .coveralls.yml
 coverage.lcov
+yarn-error.log
