@@ -7,8 +7,8 @@ dotenv.config();
 export const verifyCredentials = (username, password) => {
   let data;
   const uName = 'piyushvijay.1997@gmail.com';
-  const uPass = process.env.PASSWORD;
-  const secret = process.env.JWT_SECRET;
+  const uPass = 'random-password';
+  const secret = 'process.env.JWT_SECRET';
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(uPass, salt);
@@ -42,12 +42,20 @@ const getToken = (req, res) => {
   const { username, password } = req.body;
   const data = verifyCredentials(username, password, req);
   if (data.form === true) {
-    req.session.isLogin = false;
+    res.json({
+      isAuthenticated: false,
+      token: data.token,
+      error: true,
+      msg: data.msg,
+    });
   } else {
-    req.session.isLogin = true;
-    req.session.token = data.token;
+    res.json({
+      isAuthenticated: true,
+      token: `Bearer ${data.token}`,
+      error: false,
+      msg: 'successfully obtained json token',
+    });
   }
-  res.render('index', { data });
 };
 
 export default getToken;

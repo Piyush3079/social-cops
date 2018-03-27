@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const Authenticate = (req, res, next) => {
-  if (req.session.isLogin) {
-    const { token } = req.session;
-    const secret = process.env.JWT_SECRET;
+  if (req.headers.authorization) {
+    const token = req.headers.authorization.split(' ')[1];
+    const secret = 'process.env.JWT_SECRET';
     jwt.verify(token, secret, (err, decoded) => {
       if (err) {
         res.send({

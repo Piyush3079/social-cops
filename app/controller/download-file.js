@@ -14,7 +14,17 @@ const downloadFile = (req, res) => {
         if (err) throw err;
         fs.unlink(`./public/images/temp/${name}.${format}`, (err) => {
           if (err) throw err;
-          res.download(`./public/images/temp_compressed/${name}.${format}`);
+          const image = fs.readFile(`./public/images/temp_compressed/${name}.${format}`, 'base64', (err, data) => {
+            if (err) throw err;
+            else {
+              res.json({
+                done: true,
+                image,
+                data: `data:image/${format};base64, `,
+                error: false,
+              });
+            }
+          });
         });
       });
   });
