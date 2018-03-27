@@ -7,3 +7,7 @@ coverage.lcov
 yarn-error.log
 /*.log
 *.lcov
+app/*
+test/*
+.eslintrc
+.travis.yml
