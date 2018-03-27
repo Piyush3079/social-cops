@@ -37,7 +37,7 @@ export const verifyCredentials = (username, password) => {
 
 const getToken = (req, res) => {
   const { username, password } = req.body;
-  const data = verifyCredentials(username, password, req);
+  const data = verifyCredentials(username, password);
   if (data.form === true) {
     res.json({
       isAuthenticated: false,

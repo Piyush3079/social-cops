@@ -9,4 +9,3 @@ node_modules/
 .coveralls.yml
 coverage.lcov
 yarn-error.log
-
