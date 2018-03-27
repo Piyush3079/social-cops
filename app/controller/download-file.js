@@ -17,9 +17,10 @@ const downloadFile = (req, res) => {
           const image = fs.readFile(`./public/images/temp_compressed/${name}.${format}`, 'base64', (err, data) => {
             if (err) throw err;
             else {
+              console.log(data);
               res.json({
                 done: true,
-                image,
+                image: data,
                 data: `data:image/${format};base64, `,
                 error: false,
               });

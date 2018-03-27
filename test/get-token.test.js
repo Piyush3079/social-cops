@@ -1,10 +1,7 @@
 import request from 'request';
 import chai from 'chai';
-import dotenv from 'dotenv';
 import app from '../app/index';
 import { verifyCredentials } from '../app/controller/get-token';
-
-dotenv.config();
 
 const { expect } = chai;
 

@@ -5,12 +5,9 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import http from 'http';
-import session from 'express-session';
-import dotenv from 'dotenv';
 
 import routes from './routes/index';
 
-dotenv.config();
 
 const debug = require('debug')('social-cops:server');
 
@@ -74,32 +71,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
-
-const MySQLStore = require('express-mysql-session')(session);
-
-const options = {
-  host: process.env.DB_HOST,
-  port: 3306,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-};
-
-const sessionStore = new MySQLStore(options);
-
-app.use(session({
-  key: process.env.COOKIE_NAME,
-  secret: process.env.COOKIE_SECRET,
-  store: sessionStore,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    path: '/',
-    httpOnly: true,
-    secure: false,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  },
-}));
 
 routes(app);
 

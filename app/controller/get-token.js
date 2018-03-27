@@ -1,8 +1,5 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
-
-dotenv.config();
 
 export const verifyCredentials = (username, password) => {
   let data;

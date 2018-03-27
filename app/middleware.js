@@ -1,7 +1,4 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const Authenticate = (req, res, next) => {
   if (req.headers.authorization) {
@@ -9,10 +6,10 @@ const Authenticate = (req, res, next) => {
     const secret = 'process.env.JWT_SECRET';
     jwt.verify(token, secret, (err, decoded) => {
       if (err) {
-        res.send({
-          status: 403,
+        res.status(403);
+        res.json({
           error: true,
-          result: 'token either expired or incorrect. Please login again',
+          msg: 'token either expired or incorrect. Please login again',
         });
       } else {
         req.user = decoded;
@@ -20,8 +17,10 @@ const Authenticate = (req, res, next) => {
       }
     });
   } else {
-    res.send({
-      error: 'session expired please login or authenticate youself',
+    res.status(401);
+    res.json({
+      error: true,
+      msg: 'session expired please login or authenticate youself',
     });
   }
 };
