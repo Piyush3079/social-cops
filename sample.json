@@ -1,0 +1,28 @@
+{
+    "obj": [{
+        "city": "La Viva",
+        "country": "France",
+        "date": "2015-12-05",
+        "sights": [
+            "Eiffel Tower",
+            "Versailles"
+        ]
+    },
+    {
+        "city": "Lucknow",
+        "country": "India",
+        "date": "2015-12-05",
+        "sights": [
+            "Eiffel Tower",
+            "Versailles"
+        ]
+    }],
+    "patch": [
+    	{"op": "add", "path": "/1/capital", "value": "Paris"},
+    	{"op": "replace", "path": "/1/city", "value": "Random"},
+    	{"op": "remove", "path": "/1/city"},
+    	{"op": "add", "path": "/2/capital", "value": "Delhi"},
+    	{"op": "replace", "path": "/2/city", "value": "Chennai"},
+    	{"op": "remove", "path": "/2/date"}
+	]
+}

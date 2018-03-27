@@ -10,10 +10,10 @@ describe('download image', () => {
       .post({
         url: 'http://localhost:3000/download_file',
         headers: { Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBpeXVzaHZpamF5LjE5OTdAZ21haWwuY29tIiwicm9sZSI6ImFjY2VzcyIsImlhdCI6MTUyMjE1MTc3NywiZXhwIjoxNTI0NzQzNzc3fQ.x7K0fYGmSlXTw0MSATuvlLqLrZULmDs6T-b7YgcDfOA' },
-        form: { uri: 'https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg' },
+        form: { uri: 'https://www.moda-cani.it/gallery/big/2957.jpg' },
       }, (err, res) => {
         expect(res.statusCode).to.equal(200);
         done();
       });
-  }).timeout(10000);
+  }).timeout(15000);
 });

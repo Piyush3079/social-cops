@@ -3483,6 +3483,10 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
 
+json-patch@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/json-patch/-/json-patch-0.7.0.tgz#2598958ea67fa3660dae8ee684d35407b37f4b98"
+
 json-schema-traverse@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.3.1.tgz#349a6d44c53a51de89b40805c5d5e59b417d3340"
